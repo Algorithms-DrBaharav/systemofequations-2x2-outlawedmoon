@@ -40,9 +40,23 @@ public class SystemOfEquations2x2 {
      */
     public double[] Solve2x2(){
         
-        // Your code here
+        double y = 0;
+        double x = 0;
         
-        return null;
+        if (bigA[0][0] == 0 || bigA[1][0] == 0 || bigA[0][1] == 0 || bigA[1][1] == 0) return null;
+        double ratio = bigA[1][0]/bigA[0][0];
+
+        bigA[1][0] = bigA[1][0] - bigA[0][0] * ratio;
+        bigA[1][1] = bigA[1][1] - bigA[0][1] * ratio;
+        bigA[1][2] = bigA[1][2] - bigA[0][2] * ratio;
+        y = bigA[1][2]/bigA[1][1];
+        x = (bigA[0][2] - bigA[0][1]*y)/bigA[0][0];
+        
+        if (bigA[1][1] == 0 && bigA[1][2] == 0) return null;
+        
+        double[] A = {x,y};
+        return A;
+        
     }
     
 }
